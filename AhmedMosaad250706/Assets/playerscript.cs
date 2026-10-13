@@ -18,10 +18,13 @@ public class playerscript : MonoBehaviour
     public LayerMask whatIsGround;
 
     private bool grounded;
+    private Animator anim;
+    
 
 
     void Start()
     {
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -35,7 +38,8 @@ public class playerscript : MonoBehaviour
         if (Input.GetKey(L))
         {
             GetComponent<Rigidbody2D>().velocity =
-                new Vector2(-moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+              
+              
 
             if (GetComponent<SpriteRenderer>() != null)
             {
@@ -46,15 +50,17 @@ public class playerscript : MonoBehaviour
         if (Input.GetKey(R))
         {
             GetComponent<Rigidbody2D>().velocity =
-                new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
-
+               
+               
             if (GetComponent<SpriteRenderer>() != null)
             {
                 GetComponent<SpriteRenderer>().flipX = false;
             }
         }
-    
 
+         anim.SetFloat("Speed", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
+         new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+         new Vector2(-moveSpeed, GetComponent<Rigidbody2D>().velocity.y); 
         
     }
     
